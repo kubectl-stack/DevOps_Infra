@@ -1,0 +1,19 @@
+terraform {
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "~> 2.30"
+    }
+  }
+}
+
+provider "kubernetes" {
+  config_path    = pathexpand("~/.kube/config")
+  config_context = "minikube"
+}
+
+resource "kubernetes_namespace" "infra" {
+  metadata {
+    name = "infra"
+  }
+}
